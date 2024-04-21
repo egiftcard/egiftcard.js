@@ -1,0 +1,33 @@
+{
+  "$schema": "https://unpkg.com/@changesets/config@2.1.1/schema.json",
+  "changelog": [
+    "@changesets/changelog-github",
+    {
+      "repo": "thirdweb-dev/js"
+    }
+  ],
+  "commit": false,
+  "fixed": [
+    ["@thirdweb-dev/react-core", "@thirdweb-dev/react"],
+    ["@thirdweb-dev/react-native-compat", "@thirdweb-dev/react-native"]
+  ],
+  "linked": [],
+  "access": "public",
+  "baseBranch": "main",
+  "updateInternalDependencies": "patch",
+  "ignore": [
+    "bundlers-esbuild",
+    "bundlers-vite",
+    "bundlers-webpack",
+    "bundlers-swc",
+    "runtimes-node-commonjs",
+    "runtimes-node-module"
+  ],
+  "___experimentalUnsafeOptions_WILL_CHANGE_IN_PATCH": {
+    "updateInternalDependents": "always",
+    "onlyUpdatePeerDependentsWhenOutOfRange": true
+  },
+  "snapshot": {
+    "prereleaseTemplate": "{tag}-{commit}-{datetime}"
+  }
+}

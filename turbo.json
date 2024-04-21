@@ -1,0 +1,123 @@
+{
+  "$schema": "https://turborepo.org/schema.json",
+  "pipeline": {
+    "build": {
+      "outputs": ["dist/**"],
+      "dependsOn": ["^build"]
+    },
+    "bench": {
+      "cache": false,
+      "dependsOn": [],
+      "env": ["TW_SECRET_KEY", "CI"]
+    },
+    "typedoc": {
+      "outputs": ["typedoc/**"],
+      "dependsOn": ["^build"]
+    },
+    "@thirdweb-dev/chains#build": {
+      "outputs": ["dist/**", "chains/**"],
+      "dependsOn": ["^build"],
+      "inputs": ["package.json", "scripts/**", "data/**", "src/**", "chains/**"]
+    },
+    "@thirdweb-dev/wallets#build": {
+      "outputs": ["dist/**", "evm/**"],
+      "dependsOn": ["^build"],
+      "env": ["THIRDWEB_EWS_SDK_VERSION"]
+    },
+    "@thirdweb-dev/payments#build": {
+      "outputs": ["dist/**"],
+      "dependsOn": ["^build"],
+      "env": ["THIRDWEB_PAYMENTS_SDK_VERSION"]
+    },
+    "@thirdweb-dev/pay#build": {
+      "outputs": ["dist/**", "integrations/**"],
+      "dependsOn": ["^build"]
+    },
+    "@thirdweb-dev/sdk#build": {
+      "outputs": ["dist/**", "evm/**"],
+      "dependsOn": ["^build"]
+    },
+    "@thirdweb-dev/react#build": {
+      "outputs": ["dist/**", "evm/**"],
+      "dependsOn": ["^build"]
+    },
+    "@thirdweb-dev/react-core#build": {
+      "outputs": ["dist/**", "evm/**"],
+      "dependsOn": ["^build"]
+    },
+    "@thirdweb-dev/react-native#build": {
+      "outputs": ["dist/**"],
+      "dependsOn": ["^build"]
+    },
+    "@thirdweb-dev/react-native-compat#build": {
+      "outputs": ["src/**"],
+      "dependsOn": ["^build"]
+    },
+    "@thirdweb-dev/auth#build": {
+      "outputs": [
+        "dist/**",
+        "evm/**",
+        "express/**",
+        "next/**",
+        "fastify/**",
+        "next-auth/**"
+      ],
+      "dependsOn": ["^build"]
+    },
+    "@thirdweb-dev/contracts-js#build": {
+      "outputs": ["dist/**", "factories/**", "src/**"],
+      "inputs": ["package.json"],
+      "dependsOn": ["^build"]
+    },
+    "@thirdweb-dev/service-utils#build": {
+      "outputs": ["dist/**", "cf-worker/**", "node/**"],
+      "dependsOn": ["^build"]
+    },
+    "thirdweb#update-version": {
+      "inputs": ["package.json"],
+      "outputs": ["src/version.ts"]
+    },
+    "test": {
+      "outputs": ["coverage/**"],
+      "inputs": ["src/**", "test/**"],
+      "dependsOn": ["^build"],
+      "env": ["TW_SECRET_KEY", "CI"]
+    },
+    "test:legacy": {
+      "outputs": ["coverage/**"],
+      "inputs": ["src/**", "test/**"],
+      "dependsOn": ["^build"],
+      "env": ["TW_SECRET_KEY", "CI"]
+    },
+    "e2e": {
+      "outputs": [],
+      "inputs": ["src/**", "fixtures/**"],
+      "dependsOn": ["^build"]
+    },
+    "e2e:legacy": {
+      "outputs": [],
+      "inputs": ["src/**", "fixtures/**"],
+      "dependsOn": ["^build"]
+    },
+    "lint": {
+      "outputs": []
+    },
+    "lint:legacy": {
+      "outputs": []
+    },
+    "fix": {
+      "outputs": []
+    },
+    "dev": {
+      "cache": false
+    },
+    "clean": {
+      "cache": false
+    },
+    "push": {
+      "cache": false,
+      "dependsOn": ["build"]
+    }
+  },
+  "globalEnv": ["CI", "TW_SECRET_KEY"]
+}

@@ -1,0 +1,7 @@
+packages:
+  - "packages/*"
+  - "legacy_packages/*"
+  # e2e tests
+
+  # include packages in subfolders (e.g. apps/ and packages/)
+  - "legacy_e2e/**/*"

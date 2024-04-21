@@ -1,0 +1,25 @@
+.DS_Store
+node_modules
+.turbo
+*.log
+.next
+dist
+dist-ssr
+*.local
+.env
+.cache
+server/dist
+public/dist
+./legacy_packages/contracts-js/abis
+.idea/
+.yalc/
+yalc.lock
+build/
+playwright-report/
+.env/
+
+# Artifacts
+legacy_packages/cli/artifacts/
+
+# codecov binary
+codecov
